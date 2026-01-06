@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Lead;
+use App\Models\Task;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +16,13 @@ class TaskFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = Task::class;
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->sentence(4),
+            'due_at' => $this->faker->dateTimeBetween('now', '+10 days'),
+            'is_done' => $this->faker->boolean(),
         ];
     }
 }

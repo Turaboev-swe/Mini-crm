@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Lead;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +16,14 @@ class LeadFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = Lead::class;
     public function definition(): array
     {
         return [
-            //
+            'full_name' => $this->faker->name(),
+            'phone' => '+9989' . $this->faker->numerify('#######'),
+            'status' => $this->faker->randomElement(['new','in_progress','done']),
+            'note' => $this->faker->optional()->sentence(10),
         ];
     }
 }
