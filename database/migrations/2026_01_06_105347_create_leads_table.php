@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('leads', function (Blueprint $table) {
             $table->id();
+            $table->string('full_name');
+            $table->string('phone');
+            $table->enum('status', ['new', 'in_progress','done'])->default('new');
+            $table->text('note')->nullable();
+            $table->foreignId('assigned_to')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
