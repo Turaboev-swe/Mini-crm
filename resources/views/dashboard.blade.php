@@ -37,7 +37,7 @@
                 <div class="card-body">
                     <i class="fas fa-users fa-2x text-primary mb-2"></i>
 
-                    {{-- <h5 class="card-title">{{ $leadsCount }}</h5> --}}
+                     <h5 class="card-title">{{ $leadsCount }}</h5>
                     <p class="card-text text-muted mb-0">
                         Jami mijozlar soni
                     </p>
@@ -50,7 +50,7 @@
                 <div class="card-body">
                     <i class="fas fa-tasks fa-2x text-success mb-2"></i>
 
-                    {{-- <h5 class="card-title">{{ $tasksCount }}</h5> --}}
+                     <h5 class="card-title">{{ $tasksCount }}</h5>
                     <p class="card-text text-muted mb-0">
                         Jami vazifalar
                     </p>
@@ -63,7 +63,7 @@
                 <div class="card-body">
                     <i class="fas fa-exclamation-circle fa-2x text-danger mb-2"></i>
 
-                    {{-- <h5 class="card-title">{{ $incompleteTasks }}</h5> --}}
+                     <h5 class="card-title">{{ $pendingTasks }}</h5>
                     <p class="card-text text-muted mb-0">
                         Hali bajarilmagan vazifalar
                     </p>
