@@ -30,8 +30,9 @@
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="title" value="{{ $task->title }}">
-                                <input type="hidden" name="due_at" value="{{ $task->due_at }}">
-                                <input type="checkbox" name="is_done" onchange="this.form.submit()" {{ $task->is_done ? 'checked' : '' }}>
+                                <input type="hidden" name="due_at" value="{{ $task->due_at?->format('Y-m-d\TH:i') }}">
+                                <input type="hidden" name="is_done" value="0">
+                                <input type="checkbox" name="is_done" value="1" onchange="this.form.submit()" {{ $task->is_done ? 'checked' : '' }}>
                             </form>
                         </td>
                     </tr>

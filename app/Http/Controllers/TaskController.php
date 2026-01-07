@@ -33,15 +33,17 @@ class TaskController extends Controller
     {
         $this->authorize('update', $lead);
 
-        $data = $request->validated();
+        $task->update([
+            'title' => $request->input('title'),
+            'due_at' => $request->input('due_at'),
+            'is_done' => $request->input('is_done'),
+        ]);
 
-
-        $data['is_done'] = $request->has('is_done');
-
-        $task->update($data);
         return redirect()->route('leads.show', $lead)
             ->with('success', 'Task yangilandi!');
     }
+
+
 
     /**
      * Task deleted
