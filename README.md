@@ -1,61 +1,144 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Mini CRM
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Простой Mini CRM для работы с лидами и задачами, реализованный на Laravel 10/11.
 
-## About Laravel
+Проект сделан для учебных целей с упором на чистый код, политику доступа и работу с Eloquent.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📌 Описание
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Mini CRM позволяет пользователям:
 
-## Learning Laravel
+- Создавать лиды (assigned_to автоматически равен текущему пользователю)
+- Просматривать, редактировать и удалять только свои лиды
+- Создавать задачи и отмечать их как выполненные внутри своих лидов
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+**Технологии:**
+- PHP 8.1+
+- Laravel 10/11
+- MySQL
+- Blade + Tailwind CSS
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 🚀 Как запустить проект
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. Клонируйте репозиторий:
 
-### Premium Partners
+```bash
+git clone https://github.com/Turaboev-swe/Mini-crm.git
+cd mini-crm
+```
+2. Установите зависимости через Composer:
+```aiignore
+composer install
+```
+3. Скопируйте .env.example в .env и настройте подключение к базе данных:
+```aiignore
+cp .env.example .env
+```
+Настройте параметры:
+```aiignore
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=mini_crm
+DB_USERNAME=root
+DB_PASSWORD=
+```
+4. Сгенерируйте ключ приложения:
+```aiignore
+php artisan key:generate
+```
+5. Выполните миграции и сидеры:
+```aiignore
+php artisan migrate --seed
+```
+👥 Тестовые пользователи
+Email	Пароль
+user1@example.com
+password
+user2@example.com
+password
+📝 Страницы
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+/leads – список лидов
 
-## Contributing
+/leads/create – создание лида
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+/leads/{id} – карточка лида с задачами
 
-## Code of Conduct
+/leads/{id}/edit – редактирование лида
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Пример интерфейса:
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Главная страница пользователя с приветствием и статистикой
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# Mini-crm
-# Mini-crm
+Карточка лида с задачами, checkbox для выполнения задач
+
+🔍 Фильтры и поиск
+
+Поиск по full_name и phone
+
+Фильтр по status
+
+Сортировка по created_at (сначала новые)
+
+✅ Валидация
+
+full_name: минимум 3 символа
+
+phone: минимум 7 символов
+
+status: только допустимые значения enum
+
+title задачи: минимум 3 символа
+
+Используются FormRequest для валидации.
+
+🧪 Тесты
+
+Feature-тесты:
+
+Пользователь не может открыть лид другого пользователя
+
+Создание лида невозможно без full_name и phone
+
+Запуск тестов:
+```aiignore
+php artisan test
+```
+🗂 Структура проекта
+
+app/Models — модели Lead, Task, User
+
+app/Http/Controllers — контроллеры LeadController, TaskController
+
+app/Policies — политика доступа LeadPolicy
+
+resources/views — Blade-шаблоны для всех страниц
+
+database/factories — фабрики для лидов и задач
+
+database/seeders — сидеры для пользователей, лидов и задач
+
+⚡ Использование
+
+Перейдите в браузере по адресу http://127.0.0.1:8000
+
+Войдите с тестовыми пользователями
+
+Создавайте лиды и задачи
+
+Отмечайте задачи как выполненные
+
+Следите за прогрессом в Dashboard
+
+Примечание:
+
+Интерфейс использует Tailwind CSS для адаптивного дизайна
+
+Все действия защищены через Policy, пользователь видит только свои лиды и задачи
