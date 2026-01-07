@@ -12,7 +12,10 @@ class Task extends Model
     use HasFactory;
 
     protected $fillable = ['lead_id','title','due_at','is_done'];
-
+    protected $casts = [
+        'due_at' => 'datetime',
+        'is_done' => 'boolean',
+    ];
     public function lead(): BelongsTo
     {
         return $this->belongsTo(Lead::class);
