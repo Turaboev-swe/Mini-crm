@@ -11,7 +11,9 @@ class UpdateTaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        $lead = $this->route('lead');
+
+        return $lead && $lead->assigned_to === auth()->id();
     }
 
     /**
@@ -24,7 +26,7 @@ class UpdateTaskRequest extends FormRequest
         return [
             'title' => ['required','min:3'],
             'due_at' => ['nullable','date'],
-            'is_done' => ['boolean']
+            'is_done' => ['sometimes','boolean']
         ];
     }
 }

@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::post('/leads/{lead}/tasks', [TaskController::class, 'store'])->name('tasks.store');
     Route::put('/leads/{lead}/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
+    Route::patch('/leads/{lead}/tasks/{task}', [TaskController::class, 'update']);
     Route::delete('/leads/{lead}/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
 });
 

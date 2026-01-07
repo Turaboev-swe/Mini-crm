@@ -1,3 +1,60 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Body gradient */
+body {
+    background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
+    min-height: 100vh;
+    color: #ffffff;
+}
+
+
+.card {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: none;
+}
+
+
+.card i {
+    color: #ffffff;
+}
+
+
+.card-title, .card-text, small {
+    color: #ffffff;
+}
+
+
+.text-muted {
+    color: #6b7280 !important;
+}
+
+/* Navbar */
+.custom-navbar {
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.custom-navbar .nav-link,
+.custom-navbar .navbar-brand {
+    color: #ffffff !important;
+}
+
+.custom-navbar .nav-link.active {
+    color: #fcd34d !important;
+}
+
+/* Dropdown */
+.custom-navbar .dropdown-menu {
+    background-color: #ffffff;
+}
+
+.custom-navbar .dropdown-item {
+    color: #111827;
+}
+
+.custom-navbar .dropdown-item:hover {
+    background-color: #667eea;
+    color: #ffffff;
+}
+

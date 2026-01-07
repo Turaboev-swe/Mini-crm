@@ -11,7 +11,9 @@ class StoreTaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        $lead = $this->route('lead');
+
+        return $lead && $lead->assigned_to === auth()->id();
     }
 
     /**
