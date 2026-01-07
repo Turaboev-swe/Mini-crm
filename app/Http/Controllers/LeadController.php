@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateLeadRequest;
 use Illuminate\Http\Request;
 use App\Models\Lead;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class LeadController extends Controller
 {
+    use AuthorizesRequests;
     public function index(Request $request)
     {
         $query = Lead::where('assigned_to', auth()->id());
@@ -37,9 +39,9 @@ class LeadController extends Controller
         ]);
 
 
-        if (class_exists(Lead::class)) {
-            Lead::create($validated);
-        }
+        $validated['assigned_to'] = auth()->id();
+
+        Lead::create($validated);
 
 
         return redirect()->back()->with('success', 'Lead created successfully!');

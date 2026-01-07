@@ -14,6 +14,14 @@ class Lead extends Model
     protected $fillable = [
         'full_name','phone','status','note','assigned_to'
     ];
+    protected static function booted(): void
+    {
+        static::creating(function ($lead) {
+            if (!$lead->assigned_to) {
+                $lead->assigned_to = auth()->id();
+            }
+        });
+    }
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class,'assigned_to');
